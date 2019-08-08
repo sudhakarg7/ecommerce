@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {ApiService} from '../api.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class RegisterationComponent {
   public password:string = '';
   public email:string ='';
   public confirmPass :string='';
-  constructor(public fb: FormBuilder) { }
+  constructor(public fb: FormBuilder, public api:ApiService) { }
 
   ngOnInit(){
     this.loadForm();
@@ -29,6 +30,13 @@ export class RegisterationComponent {
   send(){
     if(this.regForm.valid){
       console.log(this.regForm.value);
+      this.api.register(this.regForm.value)
+      .then( (res)=>{
+      console.log('data passed successfully', res)
+      }) 
+      .catch( (err)=>{
+      console.log(err);
+      });
     }else{
       console.log('Error',this.regForm)
     }
