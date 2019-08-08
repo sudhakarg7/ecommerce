@@ -29,7 +29,6 @@ export class RegisterationComponent {
   }
   send(){
     if(this.regForm.valid){
-      console.log(this.regForm.value);
       this.api.register(this.regForm.value)
       .then( (res)=>{
       console.log('data passed successfully', res)
