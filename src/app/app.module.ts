@@ -10,12 +10,14 @@ import { RegisterationComponent } from './registeration/registeration.component'
 import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './api.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterationComponent,
-    HomeComponent
+    HomeComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
