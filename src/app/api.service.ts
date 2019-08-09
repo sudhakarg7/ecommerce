@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class ApiService {
@@ -12,8 +13,8 @@ export class ApiService {
   register(data: Object) {
     return this.post('users/register', data);
   }
-  getUsers(obj = { page: 1 }) {
-    return this.get(`api/users?page=${obj.page}`);
+  getUsers() {
+    return this.get('users/getusers');
 
   }
 

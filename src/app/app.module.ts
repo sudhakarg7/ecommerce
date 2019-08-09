@@ -11,13 +11,15 @@ import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './api.service';
 import { UserListComponent } from './user-list/user-list.component';
+import {LoginComponent} from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterationComponent,
     HomeComponent,
-    UserListComponent
+    UserListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
