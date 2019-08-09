@@ -38,6 +38,8 @@
     font-weight: bold;
     padding: 1rem;
     transition: all 0.2s;
+    background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+    border:none
   }
   
   .form-label-group {
@@ -104,10 +106,10 @@
   
   .btn-google {
     color: white;
-    background-color: #ea4335;
+    background-color: #ea4335 !important;
   }
   
   .btn-facebook {
     color: white;
-    background-color: #3b5998;
+    background-color: #3b5998 !important;
   }
