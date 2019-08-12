@@ -10,6 +10,7 @@ import { RegisterationComponent } from './registeration/registeration.component'
 import { HomeComponent } from './home/home.component';
 
 import { ApiService } from './api.service';
+import { DirectAccessGuardService } from './direct-access-guard.service';
 import { UserListComponent } from './user-list/user-list.component';
 import {LoginComponent} from './login/login.component';
 
@@ -26,7 +27,7 @@ import {LoginComponent} from './login/login.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule ,ReactiveFormsModule ],
-  providers: [ApiService],
+  providers: [ApiService,DirectAccessGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
