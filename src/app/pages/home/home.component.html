@@ -1,0 +1,178 @@
+
+<div class="container-fluid mt-3 mb-3">
+  <div class="col-12 mx-auto">
+<div class="filter-sec">
+  <div class="row">
+          <div class="col-md-10 mb-3">
+            <label for="state">Search </label>
+            
+            <input class="form-control" id="myInput" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#128269;  Start searching for a product by brand name or general name">
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="country">Sortby Name</label>
+            <select class="custom-select d-block w-100" id="country" required="" name="fieldName" [(ngModel)]="fieldName">
+              <option value="">Choose...</option>
+              <option value="name|asc">A - Z</option>
+              <option value="name|desc">Z - A</option>
+              <option value="price|lth">Low - High</option>
+              <option value="price|htl">High - Low</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid country.
+            </div>
+          </div>
+        </div>
+</div>
+    <div class="row mt-3" >
+      <div class="col-md-2 d-none d-xl-block d-md-block d-lg-block">
+  <div class="card">
+	<article class="card-group-item">
+		<header class="card-header"><h6 class="title">Category </h6></header>
+		<div class="filter-content">
+			<div class="list-group list-group-flush">
+			  <a class="list-group-item" [(ngModel)]="men" (click)="categoryClick('')">All Category<span class="float-right badge badge-light round">142</span> </a>
+			  <a class="list-group-item" [(ngModel)]="men" (click)="categoryClick('men')">Men's Collections<span class="float-right badge badge-light round">142</span> </a>
+			  <a class="list-group-item" [(ngModel)]="ladies" (click)="categoryClick('ladies')">ladies Collections<span class="float-right badge badge-light round">3</span>  </a>
+			  <a class="list-group-item" [(ngModel)]="kids" (click)="categoryClick('kids')">Kids<span class="float-right badge badge-light round">32</span>  </a>
+			</div>  <!-- list-group .// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+
+</div> <!-- card.// -->
+
+<div class="card">
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Range input </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			  <label>Min</label>
+			  <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+			</div>
+			<div class="form-group col-md-6 text-right">
+			  <label>Max</label>
+			  <input type="number" class="form-control" placeholder="$1,0000">
+			</div>
+			</div>
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Select Brand </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">52</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check1">
+				  	<label class="custom-control-label" for="Check1">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">132</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check2">
+				 	<label class="custom-control-label" for="Check2">Black berry</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">17</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check3">
+				  	<label class="custom-control-label" for="Check3">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">7</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check4">
+				  	<label class="custom-control-label" for="Check4">Other Brand</label>
+				</div> <!-- form-check.// -->
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+      </div>
+      <div class="col-md-7">
+        <div *ngIf="cart.messageSuccess" class="alert alert-success bg-theme" role="alert">
+          <span *ngIf="wishmsg">Selected product has been successfully added in the Wishlist</span>
+          <span *ngIf="cart.cartmsg">Product has been successfully added in the Cart</span>
+        </div>
+        <h3 class="h5 mb-2">{{categoryName | uppercase }}</h3>
+        <hr>
+        <div class="row">
+        <div class="col-md-3 col-sm-6" *ngFor="let product of cart.products|searchFilter:searchText |sorting:fieldName |productSelect:category">
+            <div class="product-grid2">
+                <div class="product-image2">
+                    <a routerLink="/home">
+                        <img class="pic-1" src="{{product.image1}}">
+                        <img class="pic-2" src="{{product.image2}}">
+                    </a>
+                    <ul class="social">
+                        <li (click)="wishListClick(product.uid)"><a routerLink="/home" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                        <li (click)="addToCart(product.uid, 1)"><a routerLink="/home" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                    <a class="add-to-cart" (click)="addToCart(product.uid)">Add to cart</a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a routerLink="/home">{{product.name}}</a></h3>
+                    <span class="price">₹{{product.price}}</span>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 order-md-3 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Your cart</span>
+        <span class="badge badge-secondary badge-pill"></span>
+      </h4>
+      <ul class="list-group mb-3" >
+       <!-- {{cart.getCartItems().cart|json}} -->
+        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cart.getCartItems().cart">
+          <div>
+            <h6 class="my-0">{{item.name}}</h6>
+            <small class="text-muted">Brief description</small>
+          </div>
+          <span>
+          
+          <button type="button" class="btn btn-sm btn-minus btn-danger" (click)="minus()">
+            <i class="fa fa-minus"></i>
+          </button>
+          <input value="{{item.qty}}" [(ngModel)]="quantity" type="text" style="width:28px; height:23px;"/>
+          <button type="button" class="btn btn-sm bg-primary" (click)="addToCart(item.uid)">
+            <i class="fa fa-plus text-white"></i>
+          </button>
+          
+          </span>
+          <span class="text-muted">{{item.price}}</span>
+        </li>
+        
+        <li class="list-group-item d-flex justify-content-between bg-light">
+          <div class="text-success">
+            <h6 class="my-0">Promo code</h6>
+            <small>EXAMPLECODE</small>
+          </div>
+          <span class="text-success">-$5</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>$20</strong>
+        </li>
+      </ul>
+
+      <form class="card p-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Promo code">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">Redeem</button>
+          </div>
+        </div>
+      </form>
+    </div>
+        
+    </div>
+</div>

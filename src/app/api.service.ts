@@ -17,6 +17,10 @@ export class ApiService {
     return this.get('users/getusers');
 
   }
+  getUserDetails(data: Object) {
+    return this.post('users/getuserdetails', data);
+
+  }
 
   post(url: string, params: any) {
     var data = params;

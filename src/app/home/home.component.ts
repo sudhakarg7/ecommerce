@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router'
+import {Router, ActivatedRoute} from '@angular/router';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,32 @@ import {ActivatedRoute} from '@angular/router'
 })
 export class HomeComponent implements OnInit {
   public token:string;
-  constructor(private _route:ActivatedRoute) { 
+  public userInfo:Object;
+  constructor(private _route:ActivatedRoute, public api:ApiService, public router:Router) { 
 
-    this._route.queryParams.subscribe(params => {
-      this.token = params["token"];
-      })
   }
 
   ngOnInit() {
-    
+    const userToken =localStorage.getItem('token');
+    this.token = userToken;
+    this.getUserInfo()
   }
 
+
+  getUserInfo(){
+
+
+    if(this.token!=null){
+      
+      this.api.getUserDetails({token: JSON.parse(this.token)}).then((res)=>{
+        this.userInfo = res; 
+    }).catch((err)=>{
+        console.log(err);
+    })
+  
+     
+  }else{
+    this.router.navigate(['/login']);
+  }
+}
 }

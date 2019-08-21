@@ -32,6 +32,7 @@ export class LoginComponent{
             this.api.login(this.loginForm.value).then((res)=>{
                 console.log('logged successfully', JSON.stringify(res));
                 let q= JSON.stringify(res[0]._id)
+                localStorage.setItem('token', q);
                 let navigationExtras: NavigationExtras = {
                     queryParams: {
                         "token": res[0]._id,

@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-theme px-3 mb-2">
+  <a class="navbar-brand" routerLink="/home"><img src="https://i.ibb.co/j4ZW5Vt/logo.png" alt="logo" height="35"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample05">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/billing" >Billing</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/checkout" >Checkout</a>
+      </li>
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/home"  id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown05">
+          <a class="dropdown-item" routerLink="/home" >Action</a>
+          <a class="dropdown-item" routerLink="/home" >Another action</a>
+          <a class="dropdown-item" routerLink="/home" >Something else here</a>
+        </div>
+      </li> -->
+    </ul>
+    <ul class="navbar-right">
+      <li (click)="cartShowHide()"><a  id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">{{cartCount}}</span></a></li>
+      <li (click)="cartShowHide(); wishClk()"><a  id="cart"><i class="fa fa-shopping-bag"></i> WishList <span class="badge">{{wishCount}}</span></a></li>
+      <li><a id="cart"><i class="fa fa-user-circle"></i> Account </a></li>
+    </ul> <!--end navbar-right -->
+  </div>
+</nav>
+
+
+ <div class="shopping-cart" *ngIf="isCartShow" (window:mouseup)="autoCloseForDropdownCars($event)" >
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{wishCount}}</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span class="main-color-text">₹2,229</span>
+      </div>
+    </div> <!--end shopping-cart-header -->
+<div *ngIf="wishList.length > 0">
+    <ul class="shopping-cart-items" *ngFor="let item of wishList">
+      <li class="clearfix">
+        <img src="{{item.image1}}" alt="item1" height="40" />
+        <span class="item-name">{{item.name}}</span>
+        <span class="item-price">{{item.price | currency}}</span>
+        <!-- <span class="item-quantity">Quantity: {{01}}</span> -->
+      </li>
+
+      <!-- <li class="clearfix">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/719ms-z8C9L._SY500._SX._UX._SY._UY_.jpg" height="40" alt="item1" />
+        <span class="item-name">KS Automatic Mechanic...</span>
+        <span class="item-price">₹1,249</span>
+        <span class="item-quantity">Quantity: 01</span>
+      </li>
+
+      <li class="clearfix">
+        <img src="https://images-na.ssl-images-amazon.com/images/I/41-wOib3E1L.jpg" height="40" alt="item1" />
+        <span class="item-name">Kindle, 6" Glare-Free To...</span>
+        <span class="item-price">₹129</span>
+        <span class="item-quantity">Quantity: 01</span>
+      </li> -->
+    </ul>
+</div>
+
+    <a href="#" class="button">Checkout</a>
+  </div> <!--end shopping-cart -->
+
+
+  
